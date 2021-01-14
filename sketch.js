@@ -5,6 +5,7 @@ function setup() {
   createCanvas(800,400);
   bullet = createSprite(50, 200, 50, 15);
   bullet.shapeColor = color("white");
+  bullet.velocityX = speed;
   
   wall = createSprite(700, 200, thickness, height/2);
   wall.shapeColor = color(80, 80, 80);
@@ -17,8 +18,6 @@ function setup() {
 
 function draw() {
   background(0);  
-  drawSprites();
-  bullet.velocityX = speed;
 
   if(hasCollided(bullet, wall)){
     bullet.velocityX = 0;
@@ -33,10 +32,11 @@ function draw() {
       wall.shapeColor = color(0, 255, 0);
     }
   }
+  drawSprites();
 }
 
 
-function hasCollided(){
+function hasCollided(lbullet, lwall){
   bulletRightEdge = lbullet.x + lbullet.width;
   wallLeftEdge = lwall.x;
   
